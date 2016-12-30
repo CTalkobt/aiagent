@@ -13,3 +13,7 @@ hs_err_pid*
 
 # IDE/Tool temp files. 
 .projectKnownledge
+/target/
+/nbproject/
+
+*.tmp
