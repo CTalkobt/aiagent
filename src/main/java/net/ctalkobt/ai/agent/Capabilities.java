@@ -19,6 +19,8 @@ package net.ctalkobt.ai.agent;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * An enumeration of capabilities that are supported by the agent. A capability
@@ -30,7 +32,6 @@ public class Capabilities {
     private final int time;
     private final int resourceConstraints; 
     private final Collection<Capability> capability;
-
 
     public static class Builder {
 
@@ -108,4 +109,14 @@ public class Capabilities {
         return LocalDateTime.now();
     }
     
+    @Override
+    public String toString()
+    {
+        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+                .append("capability", this.capability)
+                .append("resourceConstraints", this.resourceConstraints)
+                .append("chargedCost", chargedCost)
+                .append("time", time)
+                .build();
+    }
 }

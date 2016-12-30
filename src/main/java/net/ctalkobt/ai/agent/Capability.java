@@ -19,6 +19,8 @@ package net.ctalkobt.ai.agent;
 
 import java.util.Arrays;
 import java.util.Collection;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * A capability is defined as an operationg performed on a specific mime type
@@ -66,6 +68,16 @@ public class Capability {
      */
     public String getName() {
         return name;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return new ToStringBuilder(this)
+                .append("name", name)
+                .append("generatedMimeType", generatedMimeType)
+                .append("acceptedMimeType", acceptedMimeTypes)
+                .build();
     }
     
     

@@ -46,14 +46,15 @@ public class MathAgentTest {
      * Test of info method, of class MathAgent.
      */
     @Test
-    @Ignore /* TODO */
     public void testInfo() {
         System.out.println("info");
         Capabilities expResult = null;
         
         Capabilities result = instance.info();
-        assertEquals(expResult, result);        
-        fail("The test case is a prototype.");
+        assertNotNull(result);
+        assertNotNull(result.getCapability());
+        assertEquals(1, result.getCapability().size());
+        assertEquals(result.getCapability().iterator().next().getName(), "mathOp");
     }
 
     /**
