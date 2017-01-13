@@ -20,15 +20,21 @@ package net.ctalkobt.ai.agent.response;
 import java.util.Map;
 
 /**
- *
+ * Returns a numeric Response type. 
+ * 
+ * @see Response
  */
 public class NumericResponse implements Response<Number> {
 
     private final Number body;
     private final Map<String, String> headers;
 
-    public NumericResponse(Number body, Map<String,String> headers)
-    {
+    /**
+     * 
+     * @param body
+     * @param headers
+     */
+    public NumericResponse(Number body, Map<String,String> headers) {
         this.headers = headers;
         this.body = body;
     }
@@ -38,6 +44,10 @@ public class NumericResponse implements Response<Number> {
         return this.body;
     }
 
+    /**
+     * Return additional headers associated with the response.
+     * @return
+     */
     @Override
     public Map<String, String> getHeaders() {
         return headers;

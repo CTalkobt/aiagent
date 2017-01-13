@@ -33,6 +33,9 @@ public class Capabilities {
     private final int resourceConstraints; 
     private final Collection<Capability> capability;
 
+    /**
+     * Builder for {@link Capabilities}
+     */
     public static class Builder {
 
         private int time;
@@ -40,32 +43,71 @@ public class Capabilities {
         private int resourceConstraints;
         private Collection<Capability> capability;
 
-        public Builder() {
+        /**
+         * See {@link Capabilities}
+         */
+        public  Builder() {
         }
                 
+        /**
+         * Returns a {@link Capabilities} object based upon this builder.
+         * 
+         * @return
+         */
         public Capabilities build()
         {
             return new Capabilities(this);
         }
         
+        /**
+         * Cost of retrieving a successful response from this Agent. Cost is
+         * represented as an int w/ 2 implied decimal places.  1234 would equal
+         * 12.34.  
+         * <p>
+         * <em>Note:</em> THe denominational unit is currently not defined. 
+         * 
+         * @param cost
+         * @return
+         */
         public Builder chargedCost(int cost)
         {
             this.chargedCost = cost;
             return this;
         }
 
+        /**
+         * Average time that a request is expected to take. 
+         * 
+         * @param time
+         * @return
+         */
         public Builder time(int time)
         {
             this.time = time;
             return this;
         }
         
+        /**
+         * How constrainted the Agent is to perform the request. Represented
+         * int, this value corresponds to a percentage based - where 
+         * 100 is the maximum constraint and indicates an agent willing to accept
+         * requests but may take extra time in evaluating and returning a response.
+         * 
+         * @param constraints
+         * @return
+         */
         public Builder resourceConstraints(int constraints)
         {
             this.resourceConstraints = constraints;
             return this;
         }
         
+        /**
+         * A list of {@link Capability}'s that can be handled by the Agent. 
+         * 
+         * @param capabilities
+         * @return
+         */
         public Builder capability(Collection<Capability> capabilities)
         {
             this.capability = capabilities;
@@ -84,7 +126,7 @@ public class Capabilities {
     /**
      * Cost for a request to be invoked.  Note that the value returned is 
      * understood to be have an implicit 4 digit place so all values should
-     * be divded by 10000 to get the actual cost. 
+     * be divided by 10000 to get the actual cost. 
      * 
      * Eg: 400 would equate to .4 in the cost unit being used. 
      * @return 
@@ -93,18 +135,33 @@ public class Capabilities {
         return chargedCost;
     }
 
+    /**
+     * @see net.ctalkobt.ai.agent.Capabilities.Builder#time(int) 
+     * @return
+     */
     public Integer getTime() {
         return time;
     }
 
+    /**
+     * @see net.ctalkobt.ai.agent.Capabilities.Builder#resourceConstraints(int)  
+     * @return
+     */
     public Integer getResourceConstraints() {
         return resourceConstraints;
     }
 
+    /**
+     * @see net.ctalkobt.ai.agent.Capabilities.Builder#capability(java.util.Collection)   
+     * @return
+     */
     public Collection<Capability> getCapability() {
         return capability;
     }
 
+    /**
+     * @return the current date and time.
+     */
     public LocalDateTime getCurrentTime() {
         return LocalDateTime.now();
     }

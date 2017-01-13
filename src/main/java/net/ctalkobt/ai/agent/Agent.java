@@ -21,13 +21,30 @@ import net.ctalkobt.ai.agent.response.Response;
 import java.util.Map;
 
 /**
+ * Defines the responsibilities of an Agent that is able to process 
+ * and handle incoming requests and responses. 
  * 
- *
- * @param <S>
- * @param <R>
+ * @param <S> Incoming orequest type.
+ * @param <R> Extended from {@link Response}, defines the response to the request.
+ * 
+ * @see Response
  */
 public interface Agent<S,R extends Response> {
+
+    /**
+     * Defines the capabilities / operations that the Agent is capable of operating on.
+     * 
+     * @return
+     */
     Capabilities info(); 
     
+    /**
+     * Handles a given request. 
+     * 
+     * @param body
+     * @param headers Optional header mappings containing additional information
+     *   potentially necessary outside that of the body . 
+     * @return
+     */
     R request(S body, Map<String,String> headers);
 }

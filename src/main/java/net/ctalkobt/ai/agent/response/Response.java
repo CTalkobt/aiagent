@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Craig Taylor <ctalkobt@ctalkoobt.net>duck
+ * Copyright (C) 2016 Craig Taylor <ctalkobt@ctalkoobt.net>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,11 +20,23 @@ package net.ctalkobt.ai.agent.response;
 import java.util.Map;
 
 /**
- *
- * @param <T>
+ * Agent response type. 
+ * 
+ * @param <T> Body type.
  */
 public interface Response<T> {
+
+    /**
+     * Actual result. 
+     * 
+     * @return
+     */
     T getBody();
     
+    /**
+     * Any additional headers returned by the Agent. 
+     * 
+     * @return
+     */
     Map<String,String> getHeaders();
 }

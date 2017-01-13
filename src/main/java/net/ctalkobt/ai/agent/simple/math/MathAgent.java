@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Craig Taylor <ctalkobt@ctalkoobt.net>duck
+ * Copyright (C) 2016 Craig Taylor <ctalkobt@ctalkoobt.net>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -35,6 +35,10 @@ import org.apache.commons.jexl3.MapContext;
 public class MathAgent implements Agent<String, NumericResponse> {
     private static final JexlEngine JEXLEngine = new JexlBuilder().cache(128).strict(true).silent(false).create();
     
+    /**
+     *
+     * @return
+     */
     @Override
     public Capabilities info() {
         return new Capabilities.Builder()
@@ -46,6 +50,12 @@ public class MathAgent implements Agent<String, NumericResponse> {
             .build();
     }
 
+    /**
+     *
+     * @param body
+     * @param headers
+     * @return
+     */
     @Override
     public NumericResponse request(String body, Map<String, String> headers) {
         JexlContext context = new MapContext();

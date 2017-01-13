@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Craig Taylor <ctalkobt@ctalkoobt.net>duck
+ * Copyright (C) 2016 Craig Taylor <ctalkobt@ctalkoobt.net>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,6 +29,10 @@ import net.ctalkobt.ai.agent.response.NumericResponse;
  */
 public class ConstantAgent implements Agent<String, NumericResponse> {
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Capabilities info() {
         return new Capabilities.Builder()
@@ -41,6 +45,12 @@ public class ConstantAgent implements Agent<String, NumericResponse> {
             .build();
     }
 
+    /**
+     *
+     * @param body
+     * @param headers
+     * @return
+     */
     @Override
     public NumericResponse request(String body, Map<String, String> headers) {
         switch(body)

@@ -19,11 +19,10 @@ package net.ctalkobt.ai.agent;
 
 import java.util.Arrays;
 import java.util.Collection;
-import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
- * A capability is defined as an operationg performed on a specific mime type
+ * A capability is defined as an operation performed on a specific mime type
  * resulting in the production of the same or different mime type. 
  * 
  * @see #getAcceptedMimeTypes() 
@@ -34,19 +33,12 @@ public class Capability {
     private final Collection<String> generatedMimeType;
     private final String name;
 
-    public Capability(String name, 
-            Collection<String> acceptedTypes, 
-            Collection<String> generatedTypes)
-    {
-        assert name != null;
-        assert acceptedTypes != null;
-        assert generatedTypes != null;        
-        
-        this.acceptedMimeTypes = acceptedTypes;
-        this.generatedMimeType = generatedTypes;
-        this.name = name;
-    }
-
+    /**
+     *
+     * @param name
+     * @param acceptType
+     * @param generateType
+     */
     public Capability( String name, String acceptType, String generateType)
     {
         this.name = name;
@@ -54,10 +46,21 @@ public class Capability {
         this.generatedMimeType = Arrays.asList( new String[] { generateType });
     }
     
+    /**
+     * Returns list of acceptable mime types.
+     * 
+     * @return
+     */
     public Collection<String> getAcceptedMimeTypes() {
         return acceptedMimeTypes;
     }
 
+    /**
+     * Returns list of mime types that capability registered to an AiAgent is
+     * capable of generating. 
+     * 
+     * @return
+     */
     public Collection<String> getGeneratedMimeType() {
         return generatedMimeType;
     }
@@ -74,10 +77,10 @@ public class Capability {
     public String toString()
     {
         return new ToStringBuilder(this)
-                .append("name", name)
-                .append("generatedMimeType", generatedMimeType)
-                .append("acceptedMimeType", acceptedMimeTypes)
-                .build();
+            .append("name", name)
+            .append("generatedMimeType", generatedMimeType)
+            .append("acceptedMimeType", acceptedMimeTypes)
+            .build();
     }
     
     
