@@ -43,4 +43,5 @@
             <type>jar</type>
         </dependency>
     </dependencies>
+    <name>AIAgent</name>
 </project>

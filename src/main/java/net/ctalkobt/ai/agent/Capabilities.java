@@ -116,6 +116,7 @@ public class Capabilities {
         
     }
 
+    @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
     private Capabilities(Builder builder) {
         this.chargedCost = builder.chargedCost;
         this.time = builder.time;
