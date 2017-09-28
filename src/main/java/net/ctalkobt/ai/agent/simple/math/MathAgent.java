@@ -57,7 +57,7 @@ public class MathAgent implements Agent<String, NumericResponse> {
      * @return
      */
     @Override
-    public NumericResponse request(String body, Map<String, String> headers) {
+    public NumericResponse request(String body, Map<String, Object> headers) {
         JexlContext context = new MapContext();
         JexlExpression e = JEXLEngine.createExpression( body );
         Object result = e.evaluate(context);

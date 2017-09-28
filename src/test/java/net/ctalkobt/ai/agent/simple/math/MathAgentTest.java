@@ -63,7 +63,7 @@ public class MathAgentTest {
     @Test
     public void testRequest() {
         String body = "21*2";
-        Map<String, String> headers = null;
+        Map<String, Object> headers = null;
         Number expectedResult = 42;        
                 
         NumericResponse result = instance.request(body, headers);
