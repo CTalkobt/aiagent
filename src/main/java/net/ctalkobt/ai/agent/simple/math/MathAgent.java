@@ -33,7 +33,7 @@ import org.apache.commons.jexl3.MapContext;
  *
  */
 public class MathAgent implements Agent<String, NumericResponse> {
-    private static final JexlEngine JEXLEngine = new JexlBuilder().cache(128).strict(true).silent(false).create();
+    private final JexlEngine jexlEngine = new JexlBuilder().cache(128).strict(true).silent(false).create();
     
     /**
      *
@@ -44,9 +44,9 @@ public class MathAgent implements Agent<String, NumericResponse> {
         return new Capabilities.Builder()
             .chargedCost(1)
             .time(100)
-            .capability(Arrays.asList( new Capability[] {
+            .capability(Arrays.asList( 
                 new Capability("mathOp", "text/ascii/math", "text/ascii/value")                                            
-            } ))
+             ))
             .build();
     }
 
@@ -59,7 +59,7 @@ public class MathAgent implements Agent<String, NumericResponse> {
     @Override
     public NumericResponse request(String body, Map<String, Object> headers) {
         JexlContext context = new MapContext();
-        JexlExpression e = JEXLEngine.createExpression( body );
+        JexlExpression e = jexlEngine.createExpression( body );
         Object result = e.evaluate(context);
         return new NumericResponse((Number) result, null);
     }

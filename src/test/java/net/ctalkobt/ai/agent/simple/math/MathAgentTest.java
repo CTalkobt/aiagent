@@ -23,7 +23,6 @@ import net.ctalkobt.ai.agent.response.NumericResponse;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Ignore;
 
 /**
  *

@@ -38,10 +38,10 @@ public class ConstantAgent implements Agent<String, NumericResponse> {
         return new Capabilities.Builder()
             .chargedCost(1)
             .time(2)
-            .capability(Arrays.asList( new Capability[] {
+            .capability( Arrays.asList( 
                 new Capability("constantOp", "text/ascii/math", "text/ascii/value"),
                 new Capability("constantOp", "text/ascii/math", "text/ascii")
-            } ))
+            ))
             .build();
     }
 
@@ -52,7 +52,7 @@ public class ConstantAgent implements Agent<String, NumericResponse> {
      * @return
      */
     @Override
-    public NumericResponse request(String body, Map<String, String> headers) {
+    public NumericResponse request(String body, Map<String, Object> headers) {
         switch(body)
         {
             case "pi":

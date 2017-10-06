@@ -38,5 +38,5 @@ public interface Response<T> {
      * 
      * @return
      */
-    Map<String,String> getHeaders();
+    Map<String,Object> getHeaders();
 }

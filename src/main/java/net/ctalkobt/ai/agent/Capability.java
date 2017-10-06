@@ -42,8 +42,8 @@ public class Capability {
     public Capability( String name, String acceptType, String generateType)
     {
         this.name = name;
-        this.acceptedMimeTypes = Arrays.asList( new String[] { acceptType });
-        this.generatedMimeType = Arrays.asList( new String[] { generateType });
+        this.acceptedMimeTypes = Arrays.asList(acceptType);
+        this.generatedMimeType = Arrays.asList(generateType);
     }
     
     /**

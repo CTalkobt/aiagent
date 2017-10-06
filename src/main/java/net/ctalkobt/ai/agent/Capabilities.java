@@ -42,12 +42,6 @@ public class Capabilities {
         private int chargedCost;
         private int resourceConstraints;
         private Collection<Capability> capability;
-
-        /**
-         * See {@link Capabilities}
-         */
-        public  Builder() {
-        }
                 
         /**
          * Returns a {@link Capabilities} object based upon this builder.

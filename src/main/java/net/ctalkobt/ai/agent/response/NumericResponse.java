@@ -27,14 +27,14 @@ import java.util.Map;
 public class NumericResponse implements Response<Number> {
 
     private final Number body;
-    private final Map<String, String> headers;
+    private final Map<String, Object> headers;
 
     /**
      * 
      * @param body
      * @param headers
      */
-    public NumericResponse(Number body, Map<String,String> headers) {
+    public NumericResponse(Number body, Map<String,Object> headers) {
         this.headers = headers;
         this.body = body;
     }
@@ -49,7 +49,7 @@ public class NumericResponse implements Response<Number> {
      * @return
      */
     @Override
-    public Map<String, String> getHeaders() {
+    public Map<String, Object> getHeaders() {
         return headers;
     }
     
