@@ -17,6 +17,7 @@
  */
 package net.ctalkobt.ai.agent;
 
+import java.util.Collections;
 import java.util.HashMap;
 import net.ctalkobt.ai.agent.response.Response;
 import java.util.Map;
@@ -26,12 +27,12 @@ import net.ctalkobt.ai.agent.request.Request;
  * Defines the responsibilities of an Agent that is able to process 
  * and handle incoming requests and responses. 
  * 
- * @param <S> Incoming request bosy type.
- * @param <R> Extended from {@link Response}, defines the response to the request.
+ * @param <Q>  Request type.
+ * @param <R> Response type (extends from response)
  * 
  * @see Response
  */
-public interface Agent<S,R extends Response> {
+public interface Agent<R extends Response, Q extends Request<?>> {
 
     /**
      * Defines the capabilities / operations that the Agent is capable of operating on.
@@ -40,13 +41,9 @@ public interface Agent<S,R extends Response> {
      */
     Capabilities info(); 
     
-    default boolean supports(Request<S> req) { return true; }
+    default boolean supports(Q req) { return true; }
     
-    default R request(Request<S> req) { 
-        Map<String, Object> headers = new HashMap<>(); 
-        headers.put("mimeType", req.getMimeType());
-        return request(req.getData(), headers); 
-    }
+    default R request(Q req) { return request(req, (Map<String,Object>) Collections.EMPTY_MAP); }
     
     /**
      * Handles a given request. 
@@ -56,5 +53,5 @@ public interface Agent<S,R extends Response> {
      *   potentially necessary outside that of the body . 
      * @return
      */
-    R request(S body, Map<String,Object> headers);
+    R request(Q body, Map<String,Object> headers);
 }

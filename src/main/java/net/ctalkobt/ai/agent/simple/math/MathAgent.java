@@ -22,6 +22,8 @@ import java.util.Map;
 import net.ctalkobt.ai.agent.Agent;
 import net.ctalkobt.ai.agent.Capabilities;
 import net.ctalkobt.ai.agent.Capability;
+import net.ctalkobt.ai.agent.MimeType;
+import net.ctalkobt.ai.agent.request.Request;
 import net.ctalkobt.ai.agent.response.NumericResponse;
 import org.apache.commons.jexl3.JexlBuilder;
 import org.apache.commons.jexl3.JexlContext;
@@ -32,8 +34,8 @@ import org.apache.commons.jexl3.MapContext;
 /**
  *
  */
-public class MathAgent implements Agent<String, NumericResponse> {
-    private static final JexlEngine JEXLEngine = new JexlBuilder().cache(128).strict(true).silent(false).create();
+public class MathAgent implements Agent<NumericResponse, Request<String>> {
+    private final JexlEngine JEXLEngine = new JexlBuilder().cache(128).strict(true).silent(false).create();
     
     /**
      *
@@ -45,23 +47,22 @@ public class MathAgent implements Agent<String, NumericResponse> {
             .chargedCost(1)
             .time(100)
             .capability(Arrays.asList( new Capability[] {
-                new Capability("mathOp", "text/ascii/math", "text/ascii/value")                                            
-            } ))
+                new Capability("mathOp", new MimeType("text", "math"), new MimeType("text", "value"))                                            
+            }) )
             .build();
     }
 
-    /**
-     *
-     * @param body
-     * @param headers
-     * @return
-     */
     @Override
-    public NumericResponse request(String body, Map<String, Object> headers) {
+    public NumericResponse request(Request<String> body, Map<String, Object> headers) {
         JexlContext context = new MapContext();
-        JexlExpression e = JEXLEngine.createExpression( body );
+        JexlExpression e = JEXLEngine.createExpression( body.getData() );
         Object result = e.evaluate(context);
         return new NumericResponse((Number) result, null);
+    }
+
+    @Override
+    public NumericResponse request(Request<String> req) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

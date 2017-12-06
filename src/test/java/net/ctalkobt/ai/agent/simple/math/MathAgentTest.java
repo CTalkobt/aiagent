@@ -19,11 +19,11 @@ package net.ctalkobt.ai.agent.simple.math;
 
 import java.util.Map;
 import net.ctalkobt.ai.agent.Capabilities;
+import net.ctalkobt.ai.agent.request.StringRequest;
 import net.ctalkobt.ai.agent.response.NumericResponse;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Ignore;
 
 /**
  *
@@ -48,7 +48,6 @@ public class MathAgentTest {
     @Test
     public void testInfo() {
         System.out.println("info");
-        Capabilities expResult = null;
         
         Capabilities result = instance.info();
         assertNotNull(result);
@@ -62,7 +61,7 @@ public class MathAgentTest {
      */
     @Test
     public void testRequest() {
-        String body = "21*2";
+        StringRequest body = new StringRequest("21*2");
         Map<String, Object> headers = null;
         Number expectedResult = 42;        
                 

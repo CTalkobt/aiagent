@@ -22,12 +22,14 @@ import java.util.Map;
 import net.ctalkobt.ai.agent.Agent;
 import net.ctalkobt.ai.agent.Capabilities;
 import net.ctalkobt.ai.agent.Capability;
+import net.ctalkobt.ai.agent.MimeType;
+import net.ctalkobt.ai.agent.request.StringRequest;
 import net.ctalkobt.ai.agent.response.NumericResponse;
 
 /**
  *
  */
-public class ConstantAgent implements Agent<String, NumericResponse> {
+public class ConstantAgent implements Agent<NumericResponse, StringRequest> {
 
     /**
      *
@@ -38,22 +40,16 @@ public class ConstantAgent implements Agent<String, NumericResponse> {
         return new Capabilities.Builder()
             .chargedCost(1)
             .time(2)
-            .capability(Arrays.asList( new Capability[] {
-                new Capability("constantOp", "text/ascii/math", "text/ascii/value"),
-                new Capability("constantOp", "text/ascii/math", "text/ascii")
-            } ))
+            .capability(Arrays.asList(
+                new Capability("constantOp", new MimeType("text", "math"), new MimeType("text", "value")),
+                new Capability("constantOp", new MimeType("text", "math"), new MimeType("text", "ascii"))
+            ))
             .build();
     }
 
-    /**
-     *
-     * @param body
-     * @param headers
-     * @return
-     */
     @Override
-    public NumericResponse request(String body, Map<String, String> headers) {
-        switch(body)
+    public NumericResponse request(StringRequest body, Map<String, Object> headers) {
+        switch(body.getData())
         {
             case "pi":
                 return new NumericResponse(Math.PI, null);

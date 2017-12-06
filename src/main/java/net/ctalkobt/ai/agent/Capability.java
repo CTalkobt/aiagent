@@ -29,8 +29,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @see #getGeneratedMimeType() 
  */
 public class Capability {
-    private final Collection<String> acceptedMimeTypes;
-    private final Collection<String> generatedMimeType;
+    private final Collection<MimeType> acceptedMimeTypes;
+    private final Collection<MimeType> generatedMimeType;
     private final String name;
 
     /**
@@ -39,19 +39,19 @@ public class Capability {
      * @param acceptType
      * @param generateType
      */
-    public Capability( String name, String acceptType, String generateType)
+    public Capability( String name, MimeType acceptType, MimeType generateType)
     {
         this.name = name;
-        this.acceptedMimeTypes = Arrays.asList( new String[] { acceptType });
-        this.generatedMimeType = Arrays.asList( new String[] { generateType });
-    }
+        this.acceptedMimeTypes = Arrays.asList( acceptType );
+        this.generatedMimeType = Arrays.asList( generateType );
+    }    
     
     /**
      * Returns list of acceptable mime types.
      * 
      * @return
      */
-    public Collection<String> getAcceptedMimeTypes() {
+    public Collection<MimeType> getAcceptedMimeTypes() {
         return acceptedMimeTypes;
     }
 
@@ -61,7 +61,7 @@ public class Capability {
      * 
      * @return
      */
-    public Collection<String> getGeneratedMimeType() {
+    public Collection<MimeType> getGeneratedMimeType() {
         return generatedMimeType;
     }
 

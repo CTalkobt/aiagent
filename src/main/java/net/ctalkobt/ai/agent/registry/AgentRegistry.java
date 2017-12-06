@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import net.ctalkobt.ai.agent.Agent;
 import net.ctalkobt.ai.agent.request.Request;
 import net.ctalkobt.ai.agent.response.Response;
@@ -41,11 +40,12 @@ public class AgentRegistry {
         agents.add(agent);
     }
     
-    public <T,S> Response<T> dispatch(Request request, Map<String,Object> headers) {
-        List<Agent> agentsSupportingRequest = agents.stream()
+    public Response dispatch(Request request, Map<String,Object> headers) {
+        List<Response> responses = agents.stream()
                 .filter(ag -> ag.supports(request))
+                .map(ag -> ag.request(request, headers))
                 .collect(Collectors.toList());
-        List<Response<T>> responses = agentsSupportingRequest.stream()
-                .collect(ag -> ag.)
+        
+        return responses.get(0);
     }
 }

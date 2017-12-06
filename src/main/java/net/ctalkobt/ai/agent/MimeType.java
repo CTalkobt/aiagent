@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Craig Taylor <ctalkobt@ctalkobt.net>
+ * Copyright (C) 2017 duck
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -15,23 +15,17 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-
-package net.ctalkobt.ai.agent.request;
-
-import net.ctalkobt.ai.agent.MimeType;
+package net.ctalkobt.ai.agent;
 
 
-public abstract class Request<B> {
+public class MimeType {
 
-    private final B data;
+    private final String minor;
+    private final String major;
 
-    public Request(B data) {
-        this.data = data;
+    public MimeType(String major, String minor) {
+        this.major = major;
+        this.minor = minor;
     }
     
-    public abstract MimeType getMimeType();
-
-    public B getData() {
-        return this.data;
-    }    
 }
